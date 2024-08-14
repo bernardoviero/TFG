@@ -1,0 +1,24 @@
+{
+  "planes": [
+    {
+      "id": "Plane1",
+      "fuelLevel": "high",
+      "hasScale": true,
+      "altitude": "high",
+      "coordinates": {
+        "x": 10.0,
+        "y": 20.0
+      }
+    },
+    {
+      "id": "Plane2",
+      "fuelLevel": "medium",
+      "hasScale": false,
+      "altitude": "medium",
+      "coordinates": {
+        "x": -5.0,
+        "y": 15.0
+      }
+    }
+  ]
+}
