@@ -1,9 +1,3 @@
-/*
-    JaCaMo Project for the airport scenario
-*/
-
 mas sma {
-   agent aviao { 
-      instances: 3
-   }
+    agent aviao
 }

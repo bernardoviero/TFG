@@ -84,9 +84,6 @@ public class IntegracaoEnvironment extends Environment {
                                 Agente agent = gson.fromJson(jsonStringReceived, Agente.class);
                                 java.lang.reflect.Type listType = new TypeToken<LinkedList<Agente>>(){}.getType();
                                 
-                                // Se 'seen' não existe, remova o código relacionado a isso
-                                // Processar a lista de obstáculos se estiver presente de forma diferente
-
                                 LinkedList<Agente> listObstaclesSeen = new LinkedList<>(); // Alterar conforme necessário
 
                                 StringBuffer agentPercept = new StringBuffer();
