@@ -1,0 +1,4 @@
+<cartago>
+    <artifact id="pista" class="env.Pista"/>
+    <artifact id="comunicacao" class="env.Comunicacao"/>
+</cartago>

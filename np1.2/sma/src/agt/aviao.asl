@@ -1,13 +1,27 @@
-!goal1.
-+!goal1 : true <-
-    .send_env("adjust_fuel", FuelNew);
-    .send_env("move_aircraft", NewX, NewY, AltNew);
-    .send_env("adjust_course").
++!start
+    <- .print("Avião iniciado."),
+        !checar_combustivel.
 
-+!move_aircraft(NewX, NewY, AltNew) : true <-
-    .print("Moving aircraft to new coordinates");
-    .send_env("move_aircraft", NewX, NewY, AltNew).
++!checar_combustivel
+    <- .my_fuel(NivelCombustivel),
+        if (NivelCombustivel = 0) then
+            !negociar_pouso
+        else
+            !continuar_voo.
 
-+!adjust_course : true <-
-    .print("Adjusting course");
-    .send_env("adjust_course").
++!continuar_voo
+    <- .send(env, tell, [move(1, 0, -1)]),
+        !checar_combustivel.
+
++!negociar_pouso
+    <- .send(all, tell, [propor_pouso(NivelCombustivel)]).
+
++!propor_pouso(NivelCombustivel) 
+    <- .receive([aceitar_proposta(NivelCombustivel)]),
+        !pousar.
+
++!pousar 
+    <- .send(env, tell, [pousar]),
+        .print("Avião pousando.")
+
++my_fuel(100).

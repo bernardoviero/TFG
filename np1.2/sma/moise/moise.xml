@@ -1,0 +1,11 @@
+<moise>
+    <organization id="control_traffic">
+        <role name="aviao">
+        </role>
+        <scheme name="coordenacao_pouso_decolagem">
+            <goal id="negociar_pouso_decolagem">
+                <role name="aviao"/>
+            </goal>
+        </scheme>
+    </organization>
+</moise>
