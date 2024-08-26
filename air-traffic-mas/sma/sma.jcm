@@ -1,10 +1,14 @@
 mas sma {
 
-    agent airplane
     agent airport_controller
+
+    agent airplane_1 : airplane.asl
+    agent airplane_2 : airplane.asl
+    agent airplane_3 : airplane.asl
 
     workspace w {
       artifact c1: example.RunwayArtifact 
       artifact c2: example.CommunicationArtifact
+      artifact c3: example.RandomInitializerArtifact
     }
 }
