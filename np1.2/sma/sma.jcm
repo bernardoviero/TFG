@@ -1,9 +1,0 @@
-/*
-    JaCaMo Project for the Airplane Simulation scenario
-*/
-
-mas sma {
-    agent aviao {
-      instances: 5
-   } 
-}
