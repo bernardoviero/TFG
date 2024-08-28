@@ -1,17 +1,17 @@
 !start.
 
 +!start <- 
-    .print("Aviao iniciado.");
-    c1Id = getArtifactId("c1"); 
-    focus(c1Id);
+    .print("Avião iniciado.");
+    makeArtifact("c1", "example.RunwayArtifact", [], ArtId);
+    focus(ArtId);
     !controlar_trafego.
 
 +controlar_trafego <- 
-    .print("Iniciando controle de trafego...");
+    .print("Iniciando controle de tráfego...");
     !negociar_pouso.
 
 +negociar_pouso <- 
-    .print("Negociando pouso com base no combustivel, altitude e escala atuais.");
+    .print("Negociando pouso com base no combustível, altitude e escala atuais.");
     c1Id.isRunwayAvailable(Disponivel);
     if (Disponivel) {
         !avaliar_proposta;

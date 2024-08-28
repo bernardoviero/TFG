@@ -1,18 +1,20 @@
 !start.
 
 +!start <- 
-    .print("Controlador do aeroporto iniciado.").
+    .print("Controlador do aeroporto iniciado.");
+    +c1Id = new(OpFeedbackParam);
+    makeArtifact("c1", "src.env.example.RunwayArtifact", [], c1Id);
+    focus(c1Id);
+    !monitorar_pista.
 
 +cfp(airplane, [fuel(Fuel), altitude(Altitude), hasScale(HasScale)]) <- 
     .concat("CFP recebido de ", airplane, Temp1);
-    .concat(Temp1, " com combustivel ", Temp2);
+    .concat(Temp1, " com combustível ", Temp2);
     .concat(Temp2, Fuel, Temp3);
     .concat(Temp3, ", altitude ", Temp4);
     .concat(Temp4, Altitude, Temp5);
     .concat(Temp5, ", hasScale ", Mensagem);
     .print(Mensagem);
-    c1Id = getArtifactId("c1"); 
-    focus(c1Id);
     c1Id.isRunwayAvailable(Disponivel);
     if (Disponivel) {
         !evaluateProposal(airplane, Fuel, Altitude, HasScale);

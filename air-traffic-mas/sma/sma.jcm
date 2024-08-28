@@ -6,6 +6,6 @@ mas sma {
     agent airplane3 : src/agt/airplane.asl
 
     workspace w {
-      artifact c1: src.env.example.RunwayArtifact 
+      artifact c1: example.RunwayArtifact
     }
 }
