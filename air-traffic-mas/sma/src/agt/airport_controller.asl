@@ -1,45 +1,31 @@
 !start.
 
 +!start <- 
-    ?fuel(Fuel);
-    ?altitude(Altitude);
-    ?position(PosX, PosY);
-    ?hasScale(HasScale);
-    ?runway_available(true);
+    .print("Controlador do aeroporto iniciado.").
 
-    +fuel(Fuel);
-    +altitude(Altitude);
-    +position(PosX, PosY);
-    +hasScale(HasScale);
++cfp(airplane, [fuel(Fuel), altitude(Altitude), hasScale(HasScale)]) <- 
+    .concat("CFP recebido de ", airplane, Temp1);
+    .concat(Temp1, " com combustivel ", Temp2);
+    .concat(Temp2, Fuel, Temp3);
+    .concat(Temp3, ", altitude ", Temp4);
+    .concat(Temp4, Altitude, Temp5);
+    .concat(Temp5, ", hasScale ", Mensagem);
+    .print(Mensagem);
+    c1Id = getArtifactId("c1"); 
+    focus(c1Id);
+    c1Id.isRunwayAvailable(Disponivel);
+    if (Disponivel) {
+        !evaluateProposal(airplane, Fuel, Altitude, HasScale);
+    } else {
+        .send(airplane, reject_proposal, []);
+    }.
 
-    !controlTraffic.
++!evaluateProposal(airplane, Fuel, Altitude, HasScale) : (Fuel < 4) & (Altitude > 5000) <- 
+    .send(airplane, accept_proposal, []);
+    c1Id.occupyRunway.
 
-+!controlTraffic <- 
-    .print("Iniciando controle de tráfego...");
-    !negotiateLanding.
++!evaluateProposal(airplane, Fuel, Altitude, HasScale) <- 
+    .send(airplane, reject_proposal, []).
 
-+!negotiateLanding <- 
-    .print("Negociando pouso com base no combustível, altitude e escala atuais.");
-    ?runway_available(true);
-    !evaluateProposal.
-
-+!evaluateProposal : fuel(F) & altitude(A) <- 
-    .print("Proposta aceita. Preparando para pousar.");
-    !land.
-
-+!evaluateProposal : fuel(0) | altitude(0) <- 
-    .print("Proposta rejeitada. Recursos insuficientes para pousar.");
-    !retryNegotiation.
-
-+!land <- 
-    .print("Procedimento de pouso iniciado.");
-    -runway_available(true);  // Pista ocupada
-    !releaseRunway.
-
-+!releaseRunway <- 
-    .print("Liberando a pista.");
-    +runway_available(true).
-
-+!retryNegotiation <- 
-    .print("Tentando renegociar...");
-    !negotiateLanding.
+{ include("$jacamoJar/templates/common-cartago.asl") }
+{ include("$jacamoJar/templates/common-moise.asl") }

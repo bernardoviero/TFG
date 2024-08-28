@@ -1,22 +1,44 @@
 !start.
 
 +!start <- 
-    +fuel(2);
-    +altitude(10000);
-    +position(50, 50);
-    +hasScale(0);
-    !negotiateLanding.
+    .print("Aviao iniciado.");
+    c1Id = getArtifactId("c1"); 
+    focus(c1Id);
+    !controlar_trafego.
 
-+!negotiateLanding <- 
-    .send(airport_controller, cfp, [fuel(2), altitude(10000), hasScale(0)]).
++controlar_trafego <- 
+    .print("Iniciando controle de trafego...");
+    !negociar_pouso.
 
-+cfp(airport_controller, [runway_available(true)], _) <- 
-    .print("Received CFP from airport_controller with runway available.");
-    .send(airport_controller, propose, [fuel(2), altitude(10000), hasScale(0)]).
++negociar_pouso <- 
+    .print("Negociando pouso com base no combustivel, altitude e escala atuais.");
+    c1Id.isRunwayAvailable(Disponivel);
+    if (Disponivel) {
+        !avaliar_proposta;
+    } else {
+        !renegociar_pouso;
+    }.
 
-+accept_proposal(airport_controller, [], _) <- 
-    .print("Proposal accepted. Preparing to land.").
++avaliar_proposta : fuel(2) & altitude(10000) <- 
+    .print("Proposta aceita. Preparando para pousar.");
+    !pousar.
 
-+reject_proposal(airport_controller, [], _) <- 
-    .print("Proposal rejected. Retrying...");
-    !negotiateLanding.
++avaliar_proposta : fuel(0) | altitude(0) <- 
+    .print("Proposta rejeitada. Recursos insuficientes para pousar.");
+    !renegociar_pouso.
+
++pousar <- 
+    .print("Procedimento de pouso iniciado.");
+    c1Id.occupyRunway;
+    !liberar_pista.
+
++liberar_pista <- 
+    .print("Liberando a pista.");
+    c1Id.releaseRunway.
+
++renegociar_pouso <- 
+    .print("Tentando renegociar...");
+    !negociar_pouso.
+
+{ include("$jacamoJar/templates/common-cartago.asl") }
+{ include("$jacamoJar/templates/common-moise.asl") }
