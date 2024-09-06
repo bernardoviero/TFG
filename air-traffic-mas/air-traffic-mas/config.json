@@ -1,0 +1,19 @@
+{
+  "planes": [
+    {
+      "name": "plane1",
+      "fuelLevel": "low",
+      "altitude": 1000
+    },
+    {
+      "name": "plane2",
+      "fuelLevel": "medium",
+      "altitude": 5000
+    },
+    {
+      "name": "plane3",
+      "fuelLevel": "high",
+      "altitude": 8000
+    }
+  ]
+}

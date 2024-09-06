@@ -1,0 +1,12 @@
+mas air_traffic_mas {
+
+   agent controlador: src/agt/controlador.asl
+   agent plane1: src/agt/plane.asl
+   agent plane2: src/agt/plane.asl
+   agent plane3: src/agt/plane.asl
+
+   workspace env {
+      artifact agent_data : example.AgentDataArtifact()
+      artifact runway : example.RunwayArtifact()
+   }
+}
