@@ -1,0 +1,25 @@
+{
+    "planes": [
+        {
+            "id": "plane1",
+            "altitude": 10,
+            "posicao": 6,
+            "escala": 0,
+            "gasolina": 1
+        },
+        {
+            "id": "plane2",
+            "altitude": 20,
+            "posicao": 7,
+            "escala": 1,
+            "gasolina": 2
+        },
+        {
+            "id": "plane3",
+            "altitude": 30,
+            "posicao": 8,
+            "escala": 2,
+            "gasolina": 3
+        }
+    ]
+}
